@@ -8,20 +8,21 @@ class MessagesController < ApplicationController
   end
 
   def new
+    @message = Message.new
+  
   end
 
   def create
-      
-        @message = Message.new(message_params)
+    @message = Message.new(message_params)
+
 
     if @message.save
       flash[:success] = 'Message が正常に投稿されました'
       redirect_to @message
     else
       flash.now[:danger] = 'Message が投稿されませんでした'
-      render :new   
+      render :new
     end
-    
   end
 
   def edit
